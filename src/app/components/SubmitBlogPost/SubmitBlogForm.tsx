@@ -67,7 +67,7 @@ function SubmitBlogForm({ onClose, data, type, blogid }: formProps) {
       if (res.ok) {
         router.push("/");
       } else {
-        throw new Error("Failed to create blog post");
+        throw new Error("Failed to update blog post");
       }
     }
   };
