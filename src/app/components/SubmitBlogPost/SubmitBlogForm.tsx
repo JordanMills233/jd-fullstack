@@ -5,9 +5,11 @@ import toast, { Toaster } from "react-hot-toast";
 interface formProps {
   onClose: any;
   data: string;
+  type: string;
+  blogid?: string;
 }
 
-function SubmitBlogForm({ onClose, data }: formProps) {
+function SubmitBlogForm({ onClose, data, type, blogid }: formProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -34,18 +36,39 @@ function SubmitBlogForm({ onClose, data }: formProps) {
       return;
     }
 
-    const res = await fetch("http://localhost:3000/api/blogs", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({ title, description, data }),
-    });
+    if (type === "submit") {
+      const res = await fetch("http://localhost:3000/api/blogs", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ title, description, data }),
+      });
 
-    if (res.ok) {
-      router.push("/");
-    } else {
-      throw new Error("Failed to create blog post");
+      if (res.ok) {
+        router.push("/");
+      } else {
+        throw new Error("Failed to create blog post");
+      }
+    } else if (type === "update") {
+      const updatedBlog = {
+        newTitle: title,
+        newDescription: description,
+        newData: data,
+      };
+      const res = await fetch(`http://localhost:3000/api/blogs/${blogid}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedBlog),
+      });
+
+      if (res.ok) {
+        router.push("/");
+      } else {
+        throw new Error("Failed to create blog post");
+      }
     }
   };
 

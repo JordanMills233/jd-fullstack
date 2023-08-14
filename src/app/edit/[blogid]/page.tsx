@@ -1,12 +1,32 @@
 "use client";
 
-import React, { useState } from "react";
+interface blogProps {
+  params: { blogid: string };
+}
+
+import React, { useEffect, useState } from "react";
 import MarkdownEditor from "@uiw/react-markdown-editor";
 import SubmitBlogForm from "@/app/components/SubmitBlogPost/SubmitBlogForm";
 
-function App() {
+function App({ params }: blogProps) {
   const [markdown, setMarkdown] = useState("");
   const [isFormVisible, setFormVisible] = useState(false);
+
+  useEffect(() => {
+    const fetchBlogData = async () => {
+      const res = await fetch(
+        `http://localhost:3000/api/blogs/${params.blogid}`,
+        {
+          cache: "no-store",
+        }
+      );
+
+      let result = await res.json();
+      setMarkdown(result.blog.data); // Set the state here after fetching the data
+    };
+
+    fetchBlogData(); // Calling the function within useEffect
+  }, [params.blogid]);
 
   const handleCloseForm = () => {
     setFormVisible(false);
@@ -19,7 +39,8 @@ function App() {
           <SubmitBlogForm
             onClose={handleCloseForm}
             data={markdown}
-            type="submit"
+            type="update"
+            blogid={params.blogid}
           />
         </div>
       )}
@@ -38,7 +59,7 @@ function App() {
           }}
           className=" m-10 bg-green-400 hover:bg-green-500 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
         >
-          <span>Submit Blog Post</span>
+          <span>Update Blog Post</span>
         </button>
       </div>
     </div>
