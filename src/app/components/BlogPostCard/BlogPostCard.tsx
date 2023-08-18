@@ -31,7 +31,7 @@ const BlogPostCard = ({ id, title, description, data }: props) => {
     });
 
     if (res.ok) {
-      router.push("/");
+      router.refresh();
     } else {
       throw new Error("Failed to delete blog post");
     }
