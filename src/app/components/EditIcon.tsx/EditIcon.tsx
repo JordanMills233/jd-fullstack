@@ -4,7 +4,7 @@ interface editProps {
 
 export const EditIcon = ({ onClick }: editProps) => {
   return (
-    <div className="pt-3 pr-3 " onClick={onClick}>
+    <div className="pt-3 pr-1 " onClick={onClick}>
       <svg
         fill="#ffffff"
         version="1.1"

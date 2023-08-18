@@ -20,3 +20,10 @@ export async function GET(request: any, { params }: any) {
   const blog = await Blog.findOne({ _id: id });
   return NextResponse.json({ blog }, { status: 200 });
 }
+
+export async function DELETE(request: any, { params }: any) {
+  const { id } = params;
+  await connectMongoDB();
+  await Blog.findByIdAndDelete(id);
+  return NextResponse.json({ message: "Blog deleted" }, { status: 200 });
+}

@@ -14,10 +14,3 @@ export async function GET() {
   const blogs = await Blog.find();
   return NextResponse.json({ blogs });
 }
-
-export async function DELETE(request: any) {
-  const id = request.nextUrl.searchParams.get("id");
-  await connectMongoDB();
-  await Blog.findByIdAndDelete(id);
-  return NextResponse.json({ message: "Blog deleted" }, { status: 200 });
-}
