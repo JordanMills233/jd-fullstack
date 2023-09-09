@@ -1,3 +1,5 @@
+import connectMongoDB from "@/lib/mongodb";
+import Blog from "@/models/blog";
 import BlogPostCard from "@/app/components/BlogPostCard/BlogPostCard";
 import Link from "next/link";
 
@@ -10,10 +12,8 @@ interface Blog {
 }
 
 export default async function Home() {
-  const res = await fetch(process.env.URL + "/api/blogs", {
-    cache: "no-store",
-  });
-  let data = await res.json();
+  await connectMongoDB();
+  const blogs = await Blog.find();
 
   return (
     <main className="flex  flex-col items-center justify-between p-4 bg-[#0d1117]">
@@ -25,7 +25,7 @@ export default async function Home() {
         Create New Blog Post
       </Link>
 
-      {data.blogs.map((blog: Blog) => (
+      {blogs.map((blog: Blog) => (
         <BlogPostCard
           key={blog._id}
           id={blog._id}
