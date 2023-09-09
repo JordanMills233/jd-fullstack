@@ -14,7 +14,7 @@ function App({ params }: blogProps) {
 
   useEffect(() => {
     const fetchBlogData = async () => {
-      const res = await fetch(process.env.URL + `/api/blogs/${params.blogid}`, {
+      const res = await fetch(`/api/blogs/${params.blogid}`, {
         cache: "no-store",
       });
 
