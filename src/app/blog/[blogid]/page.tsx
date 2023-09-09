@@ -10,7 +10,7 @@ import React from "react";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 
 async function App({ params }: blogProps) {
-  const res = await fetch(`http://localhost:3000/api/blogs/${params.blogid}`, {
+  const res = await fetch(process.env.URL + `/api/blogs/${params.blogid}`, {
     cache: "no-store",
   });
 

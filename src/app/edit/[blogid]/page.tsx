@@ -14,12 +14,9 @@ function App({ params }: blogProps) {
 
   useEffect(() => {
     const fetchBlogData = async () => {
-      const res = await fetch(
-        `http://localhost:3000/api/blogs/${params.blogid}`,
-        {
-          cache: "no-store",
-        }
-      );
+      const res = await fetch(process.env.URL + `/api/blogs/${params.blogid}`, {
+        cache: "no-store",
+      });
 
       let result = await res.json();
       setMarkdown(result.blog.data); // Set the state here after fetching the data

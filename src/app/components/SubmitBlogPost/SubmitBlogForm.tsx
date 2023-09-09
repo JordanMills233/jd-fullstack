@@ -37,7 +37,7 @@ function SubmitBlogForm({ onClose, data, type, blogid }: formProps) {
     }
 
     if (type === "submit") {
-      const res = await fetch("http://localhost:3000/api/blogs", {
+      const res = await fetch(process.env.URL + "/api/blogs", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -56,7 +56,7 @@ function SubmitBlogForm({ onClose, data, type, blogid }: formProps) {
         newDescription: description,
         newData: data,
       };
-      const res = await fetch(`http://localhost:3000/api/blogs/${blogid}`, {
+      const res = await fetch(process.env.URL + `/api/blogs/${blogid}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

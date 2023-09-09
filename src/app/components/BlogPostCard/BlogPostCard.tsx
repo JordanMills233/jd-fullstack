@@ -14,16 +14,16 @@ interface props {
 const BlogPostCard = ({ id, title, description, data }: props) => {
   const router = useRouter();
   const handleCLick = () => {
-    router.push(`http://localhost:3000/blog/${id}`);
+    router.push(process.env.URL + `/blog/${id}`);
     console.log(`clicked card with ID: ${id}`);
   };
   const handleEdit = () => {
-    router.push(`http://localhost:3000/edit/${id}`);
+    router.push(process.env.URL + `/edit/${id}`);
     console.log("edit clicked");
   };
 
   const handleDelete = async () => {
-    const res = await fetch(`http://localhost:3000/api/blogs/${id}`, {
+    const res = await fetch(process.env.URL + `/api/blogs/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
