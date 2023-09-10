@@ -11,11 +11,12 @@ interface Blog {
   __v: number;
 }
 
+// export const revalidate = 0;
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   await connectMongoDB();
-  const blogs = await Blog.find().exec();
-
-  console.log(blogs);
+  const blogs = await Blog.find();
 
   return (
     <main className="flex  flex-col items-center justify-between p-4 bg-[#0d1117]">
