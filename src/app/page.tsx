@@ -15,6 +15,8 @@ export default async function Home() {
   await connectMongoDB();
   const blogs = await Blog.find();
 
+  console.log(blogs);
+
   return (
     <main className="flex  flex-col items-center justify-between p-4 bg-[#0d1117]">
       <h1 className=" font-extrabold text-4xl">WELCOME TO MY BLOG </h1>
