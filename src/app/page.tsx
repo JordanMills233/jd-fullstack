@@ -13,7 +13,7 @@ interface Blog {
 
 export default async function Home() {
   await connectMongoDB();
-  const blogs = await Blog.find();
+  const blogs = await Blog.find().exec();
 
   console.log(blogs);
 
