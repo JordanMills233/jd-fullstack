@@ -46,8 +46,8 @@ const BlogPostCard = ({ id, title, description, data }: props) => {
                 >
                     {title}
                 </h1>
-                <EditIcon onClick={handleEdit} title={id} />
-                <DeleteIcon onClick={handleDelete} title={id} />
+                <EditIcon onClick={handleEdit} title={title} />
+                <DeleteIcon onClick={handleDelete} title={title} />
             </div>
             <h1 className=" p-5 b-5 hover:">{description}</h1>
             <h1 className="hover:text-blue-400 font-bold">21st June 2023</h1>
