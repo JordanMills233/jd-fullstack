@@ -11,6 +11,6 @@ describe("template spec", () => {
         cy.get("textarea").click().type("E2E Test Description");
         cy.contains("Submit").click();
         cy.contains("E2E Test Title");
-        cy.get("svg");
+        cy.get("#E2ETestTitle");
     });
 });
