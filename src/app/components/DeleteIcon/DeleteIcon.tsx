@@ -5,7 +5,7 @@ interface editProps {
 
 export const DeleteIcon = ({ onClick, title }: editProps) => {
     return (
-        <div className="pt-3 pr-2 " onClick={onClick} id={title}>
+        <div className="pt-3 pr-2 " onClick={onClick} id={title + "del"}>
             <svg
                 width="30px"
                 height="30px"

@@ -5,7 +5,7 @@ interface editProps {
 
 export const EditIcon = ({ onClick, title }: editProps) => {
     return (
-        <div className="pt-3 pr-1 " onClick={onClick} id={title}>
+        <div className="pt-3 pr-1 " onClick={onClick} id={title + "edit"}>
             <svg
                 fill="#ffffff"
                 version="1.1"

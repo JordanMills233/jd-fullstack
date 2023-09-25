@@ -10,7 +10,19 @@ describe("template spec", () => {
         cy.get("input").click().type("E2E Test Title");
         cy.get("textarea").click().type("E2E Test Description");
         cy.contains("Submit").click();
-        cy.contains("E2E Test Title");
-        cy.get("#E2ETestTitle");
+        cy.contains("E2E Test Title").click();
+        cy.visit("https://jd-fullstack.vercel.app/");
+        cy.get("#E2ETestTitle").click();
+        cy.wait(1000);
+        cy.get("div.cm-content")
+            .click()
+            .type("{enter}")
+            .type("{enter} # another smaller test heading");
+        cy.contains("Update").click();
+        cy.get("input").click().type("Updated E2E Test Title");
+        cy.get("textarea").click().type("Updated E2E Test Description");
+        cy.contains("Submit").click();
+        cy.contains("Updated E2E Test Title").click();
+        cy.visit("https://jd-fullstack.vercel.app/");
     });
 });
