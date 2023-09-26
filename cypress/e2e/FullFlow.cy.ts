@@ -19,7 +19,7 @@ describe("Full website flow", () => {
         cy.get("div.cm-content")
             .click()
             .type("{enter}")
-            .type("{enter} # another smaller test heading");
+            .type("{enter} ## another smaller test heading");
         cy.contains("Update").click();
         cy.get("input").click().type("Updated E2E Test Title");
         cy.get("textarea").click().type("Updated E2E Test Description");
